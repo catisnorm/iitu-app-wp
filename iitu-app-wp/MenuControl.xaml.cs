@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace DevApp1
+namespace PanoramaApp1
 {
     public partial class MenuControl : UserControl
     {

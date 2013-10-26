@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using DevApp1.Resources;
+//using DevApp1.Resources;
 
-namespace DevApp1.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class MenuViewModel : INotifyPropertyChanged
     {
@@ -45,7 +45,7 @@ namespace DevApp1.ViewModels
         {
             get
             {
-                return AppResources.SampleProperty;
+                return SampleProperty;
             }
         }
 
@@ -74,7 +74,7 @@ namespace DevApp1.ViewModels
                 Title = "выход",
                 ClickAction = () =>
                 {
-                    App.Current.Terminate();
+                  
                 }
             });
 

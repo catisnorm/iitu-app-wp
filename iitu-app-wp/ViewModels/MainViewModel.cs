@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using DevApp1.Resources;
+//using PanoramaApp1.Resources;
 
-namespace DevApp1.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -45,7 +45,7 @@ namespace DevApp1.ViewModels
         {
             get
             {
-                return AppResources.SampleProperty;
+                return SampleProperty;
             }
         }
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using DevApp1.Resources;
+//using DevApp1.Resources;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Net;
 
-namespace DevApp1.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class NewsViewModel : INotifyPropertyChanged
     {
@@ -45,7 +45,7 @@ namespace DevApp1.ViewModels
         {
             get
             {
-                return AppResources.SampleProperty;
+                return SampleProperty;
             }
         }
 
@@ -57,7 +57,7 @@ namespace DevApp1.ViewModels
 
         public void LoadData()
         {
-            await GetNews();
+            //GetNews();
             this.IsDataLoaded = true;
         }
 
@@ -71,13 +71,13 @@ namespace DevApp1.ViewModels
             }
         }
 
-        private async Task<List<NewsItem>> GetNews()
+        private List<NewsItem> GetNews()
         {
             List<NewsItem> result = new List<NewsItem>();
 
             HttpWebRequest request = HttpWebRequest.CreateHttp("http://www.iitu.kz/lang/ru/feed/news/");
 
-            HttpWebResponse response = await request.BeginGetResponse();
+           // HttpWebResponse response = request.BeginGetResponse();
 
 
             return result;
