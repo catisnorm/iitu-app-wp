@@ -5,6 +5,7 @@ using DevApp1.Resources;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net;
+using DevApp1.Utils;
 
 namespace DevApp1.ViewModels
 {
@@ -57,8 +58,7 @@ namespace DevApp1.ViewModels
 
         public void LoadData()
         {
-            await GetNews();
-            this.IsDataLoaded = true;
+            GetNews();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,16 +71,25 @@ namespace DevApp1.ViewModels
             }
         }
 
-        private async Task<List<NewsItem>> GetNews()
+        private List<NewsItem> GetNews()
         {
             List<NewsItem> result = new List<NewsItem>();
 
-            HttpWebRequest request = HttpWebRequest.CreateHttp("http://www.iitu.kz/lang/ru/feed/news/");
+            Web.MakeRequest("http://www.iitu.kz/lang/ru/feed/news/", onLoadCompleted);
 
-            HttpWebResponse response = await request.BeginGetResponse();
+           // HttpWebResponse response = await request.BeginGetResponse();
 
 
             return result;
+        }
+
+        private void onLoadCompleted(string obj)
+        {
+            string response = obj;
+            s
+            this.Items.Add(new NewsItemViewModel());
+
+            this.IsDataLoaded = true;
         }
 
         class NewsItem
@@ -91,5 +100,7 @@ namespace DevApp1.ViewModels
             public string Link { get; set; }
             public string Image { get; set; }
         }
+
+        public object loadCompleted { get; set; }
     }
 }
