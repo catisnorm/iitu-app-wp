@@ -12,11 +12,11 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <phone:LongListSelector HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="404" Name="menuList" ItemsSource="{Binding Items}">
+        <phone:LongListSelector HorizontalAlignment="Left" VerticalAlignment="Top" Height="255" Width="404" Name="menuList" ItemsSource="{Binding Items}">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Tap="MenuItem_Tap" Tag="{Binding Title}">
-                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+                        <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="#FFF5AC42" />
                     </StackPanel>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
