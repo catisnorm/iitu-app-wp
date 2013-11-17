@@ -27,7 +27,7 @@ namespace DevApp1
 
             var item = from p in App.MenuViewModel.Items
                        where p.Title == (string)panel.Tag
-                       select p.ClickAction;
+                      select p.ClickAction;
             
             var action = item.FirstOrDefault<Action>();
             

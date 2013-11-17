@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net;
 using DevApp1.Utils;
+using System.Xml;
+using System.Xml.Linq;
+using System.Globalization;
 
 namespace DevApp1.ViewModels
 {
@@ -86,8 +89,25 @@ namespace DevApp1.ViewModels
         private void onLoadCompleted(string obj)
         {
             string response = obj;
-            s
-            this.Items.Add(new NewsItemViewModel());
+            //XmlReader reader = XmlReader.Create(response);
+            NewsItem news = new NewsItem();
+            XDocument doc = XDocument.Parse(response);
+
+            foreach (XElement channel in doc.Descendants("channel"))
+            {
+                foreach(XElement item in doc.Descendants("item"))
+                {
+                    DateTime date = DateTime.ParseExact(item.Element("pubDate").Value.ToString(), "ddd, dd MMM yyyy HH:mm:ss K", CultureInfo.InvariantCulture);
+                    this.Items.Add(new NewsItemViewModel()
+                    {
+                        Image = @"http://www.iitu.kz/uploads/news/" + date.Year + "/"+ date.Month + "_" + date.Day + "/" + item.Element("img").Value.ToString() + ".png",
+                        Title = item.Element("title").Value,
+                        Description = item.Element("description").Value,
+                        Published = date
+                    });
+                }
+            }
+            //this.Items.Add(new NewsItemViewModel());
 
             this.IsDataLoaded = true;
         }

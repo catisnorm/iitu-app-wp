@@ -63,7 +63,16 @@ namespace DevApp1.ViewModels
             // Sample data; replace with real data
             this.Items.Add(new MenuItemViewModel()
             {
-                Title = "новости",
+                Title = "Новости iitu.kz",
+                ClickAction = delegate
+                {
+                    App.Current.RootVisual = new IITUNewsControl();
+                }
+            });
+
+            this.Items.Add(new MenuItemViewModel()
+            {
+                Title = "Новости DL",
                 ClickAction = delegate
                 {
                     App.Current.RootVisual = new MainPage();
