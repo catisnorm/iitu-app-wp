@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using DevApp1.Resources;
+using Microsoft.Phone.Controls;
 
 namespace DevApp1.ViewModels
 {
@@ -16,38 +17,6 @@ namespace DevApp1.ViewModels
         /// A collection for ItemViewModel objects.
         /// </summary>
         public ObservableCollection<MenuItemViewModel> Items { get; private set; }
-
-        private string _sampleProperty = "Sample Runtime Property Value";
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding
-        /// </summary>
-        /// <returns></returns>
-        public string SampleProperty
-        {
-            get
-            {
-                return _sampleProperty;
-            }
-            set
-            {
-                if (value != _sampleProperty)
-                {
-                    _sampleProperty = value;
-                    NotifyPropertyChanged("SampleProperty");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sample property that returns a localized string
-        /// </summary>
-        public string LocalizedSampleProperty
-        {
-            get
-            {
-                return AppResources.SampleProperty;
-            }
-        }
 
         public bool IsDataLoaded
         {
@@ -66,7 +35,7 @@ namespace DevApp1.ViewModels
                 Title = "Новости iitu.kz",
                 ClickAction = delegate
                 {
-                    App.Current.RootVisual = new IITUNewsControl();
+                    App.Current.RootVisual = new MainPage().IITUnews;
                 }
             });
 
@@ -80,7 +49,7 @@ namespace DevApp1.ViewModels
             });
             this.Items.Add(new MenuItemViewModel()
             {
-                Title = "выход",
+                Title = "Выход",
                 ClickAction = () =>
                 {
                     App.Current.Terminate();

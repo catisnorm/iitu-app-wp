@@ -20,6 +20,7 @@ namespace DevApp1
             if (!App.NewsViewModel.IsDataLoaded)
                 App.NewsViewModel.LoadData();
         }
+
         private void Item_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             

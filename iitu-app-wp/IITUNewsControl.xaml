@@ -12,7 +12,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="newsLayout">
-        <phone:LongListSelector HorizontalAlignment="Left" VerticalAlignment="Top" Height="546" Width="404" Name="menuList" ItemsSource="{Binding Items}">
+        <phone:LongListSelector HorizontalAlignment="Left" VerticalAlignment="Top" Height="480" Width="404" Name="newsList" ItemsSource="{Binding Items}">
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

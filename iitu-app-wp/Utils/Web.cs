@@ -22,7 +22,7 @@ namespace DevApp1.Utils
             }
             catch (Exception e)
             {
-
+                e.ToString();
             }
         }
 

@@ -17,23 +17,6 @@ namespace DevApp1
         public MainPage()
         {
             InitializeComponent();
-
-            // Set the data context of the listbox control to the sample data
-            DataContext = App.NewsViewModel;
         }
-
-        // Load data for the ViewModel Items
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (!App.MenuViewModel.IsDataLoaded)
-            {
-                App.MenuViewModel.LoadData();
-            }
-            if (!App.NewsViewModel.IsDataLoaded)
-            {
-                App.NewsViewModel.LoadData();
-            }
-        }
-
     }
 }
