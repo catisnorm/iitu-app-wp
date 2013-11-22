@@ -41,6 +41,18 @@ namespace DevApp1
             }
         }
 
+        private static DLNewsViewModel dlNewsViewModel = null;
+
+        public static DLNewsViewModel DLNewsViewModel
+        {
+            get
+            {
+                if (dlNewsViewModel == null)
+                    dlNewsViewModel = new DLNewsViewModel();
+                
+                return dlNewsViewModel;
+            }
+        }
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -102,6 +114,9 @@ namespace DevApp1
 
             if (!App.NewsViewModel.IsDataLoaded)
                 App.NewsViewModel.LoadData();
+
+            if (!App.DLNewsViewModel.IsDataLoaded)
+                App.DLNewsViewModel.LoadData();
         }
 
         // Code to execute when the application is deactivated (sent to background)

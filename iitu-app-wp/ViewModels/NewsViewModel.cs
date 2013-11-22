@@ -44,9 +44,7 @@ namespace DevApp1.ViewModels
 
         private void onLoadCompleted(string obj)
         {
-            string response = obj;
-
-            XDocument doc = XDocument.Parse(response);
+            XDocument doc = XDocument.Parse(obj);
 
             foreach (XElement item in doc.Descendants("item"))
             {
@@ -62,7 +60,7 @@ namespace DevApp1.ViewModels
 
             this.IsDataLoaded = true;
         }
-
+        /*
         class NewsItem
         {
             public string Title { get; set; }
@@ -70,8 +68,6 @@ namespace DevApp1.ViewModels
             public DateTime Published { get; set; }
             public string Link { get; set; }
             public string Image { get; set; }
-        }
-
-        //public object loadCompleted { get; set; }
+        }*/
     }
 }

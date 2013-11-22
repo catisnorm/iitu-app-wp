@@ -53,6 +53,11 @@
                 </devapp:IITUNewsControl>
             </phone:PanoramaItem>
 
+            <phone:PanoramaItem Name="DLNews" Header="Новости dl.iitu.kz" TabIndex="2">
+                <!--Double line list with image placeholder and text wrapping using a floating header that scrolls with the content-->
+                <devapp:DLNewsControl Margin="0,-12,0,0">
+                </devapp:DLNewsControl>
+            </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
 </phone:PhoneApplicationPage>
