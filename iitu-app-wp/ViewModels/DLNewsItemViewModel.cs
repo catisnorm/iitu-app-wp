@@ -15,8 +15,7 @@ namespace DevApp1.ViewModels
     public class DLNewsItemViewModel : INotifyPropertyChanged
     {
         private string _title;
-        
-        [JsonProperty("title")]
+
         public string Title
         {
             get
@@ -34,8 +33,7 @@ namespace DevApp1.ViewModels
         }
 
         private string _content;
-        
-        [JsonProperty("content")]
+
         public string Content
         {
             get
@@ -55,7 +53,6 @@ namespace DevApp1.ViewModels
 
         private DateTime _published;
 
-        [JsonProperty("published")]
         public DateTime Published
         {
             get
@@ -71,25 +68,6 @@ namespace DevApp1.ViewModels
                 }
             }
         }
-
-        /*private string _filelink;
-        
-        [JsonProperty]
-        public string FileLink
-        {
-            get
-            {
-                return _filelink;
-            }
-            set
-            {
-                if (value != _filelink)
-                {
-                    _filelink = value;
-                    NotifyPropertyChanged("FileLink");
-                }
-            }
-        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

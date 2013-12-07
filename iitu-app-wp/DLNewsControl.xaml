@@ -16,7 +16,6 @@
             <phone:LongListSelector.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <!-- Image Source="{Binding Image}" Height="75" Width="75" HorizontalAlignment="Left" Margin="0, 5"/-->
                         <StackPanel>
                             <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" Foreground="#FFF5AC42" />
                             <TextBlock Text="{Binding Content}" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" Foreground="#FFF7E7D1" />
@@ -26,5 +25,6 @@
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>
         </phone:LongListSelector>
+        <phone:WebBrowser Name="DLFeedList" Margin="0,0,10,0" Background="Transparent"/>
     </Grid>
 </UserControl>

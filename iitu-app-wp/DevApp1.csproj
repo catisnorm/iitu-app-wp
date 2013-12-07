@@ -154,6 +154,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\html_dl_item.html" />
+    <Content Include="Resources\html_dl_tpl.html" />
     <Resource Include="Assets\PanoramaBackground.png" />
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">

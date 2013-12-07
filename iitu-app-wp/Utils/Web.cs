@@ -17,8 +17,8 @@ namespace DevApp1.Utils
             {
                 WebClient client = new WebClient();
 
-                client.DownloadStringCompleted += client_DownloadStringCompleted;
                 client.DownloadStringAsync(new Uri(url), callback);
+                client.DownloadStringCompleted += client_DownloadStringCompleted;
             }
             catch (Exception e)
             {

@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using DevApp1.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace DevApp1.ViewModels
 {
     public class DLNewsViewModel
     {
+        public static string htmlContent = "";
         public DLNewsViewModel()
         {
             this.Items = new ObservableCollection<DLNewsItemViewModel>();
@@ -32,31 +34,73 @@ namespace DevApp1.ViewModels
         
         private void onLoadCompleted(string obj)
         {
-            var jUserObject = JsonConvert.DeserializeObject<DLNewsItemViewModel>(obj);
             
+            string curDir = Directory.GetCurrentDirectory();
 
-            this.Items.Add(new DLNewsItemViewModel()
+            using (Stream stream1 = File.Open(String.Format(@"{0}\html_dl_item.html", curDir), FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
-                Title = jUserObject.Title,
-                Content = jUserObject.Content,
-                Published = jUserObject.Published,
-                //FileLink = jUserObject.FileLink
-            });
+                StreamWriter wr = new StreamWriter(stream1);
+                wr.WriteLine("<div class=\"post\">");
+                wr.WriteLine("  <div class=\"header\">");
+                wr.WriteLine("      <div class=\"title\">{title}</div>");
+                wr.WriteLine("      <div class=\"date\">{date}</div>");
+                wr.WriteLine("  </div>");
+                wr.WriteLine("  <div class=\"text\">{text}</div>");
+                wr.WriteLine("</div>");
+            }
+            
+            Stream stream = File.Open(String.Format(@"{0}\html_dl_item.html", curDir), FileMode.Open);
+            StreamReader streamReader = new StreamReader(stream);
+            string itemtpl = streamReader.ReadToEnd();
+            
+            StringReader strReader = new StringReader(obj);
+            JsonTextReader reader = new JsonTextReader(strReader);
+
+            string title = null;
+            string content;
+            string published = null;
+
+            while (reader.Read())
+            {
+                if (reader.Value != null)
+                {
+                    if (reader.Value.Equals("title"))
+                    {
+                        reader.Read();
+                        title = (string)reader.Value;
+
+                    }
+                    else
+                    {
+                        if (reader.Value.Equals("published"))
+                        {
+                            reader.Read();
+                            published = (string)reader.Value;
+
+                        }
+                        else
+                        {
+                            if (reader.Value.Equals("content"))
+                            {
+                                reader.Read();
+                                content = (string)reader.Value;
+                                this.Items.Add(new DLNewsItemViewModel()
+                                {
+                                    Title = title,
+                                    Content = content,
+                                    Published = DateTime.Parse(published),
+                                });
+
+                                string currentItem = itemtpl;
+                                currentItem = currentItem.Replace("{title}", title).Replace("{text}", content).Replace("{date}", published);
+                                htmlContent += currentItem;
+                            }
+                        }
+                    }
+                }
+            }
 
             this.IsDataLoaded = true;
         }
-        /*
-        [JsonObject]
-        class DlNewsItem
-        {
-            [JsonProperty]
-            public string Title { get; set; }
-            [JsonProperty]
-            public string Content { get; set; }
-            [JsonProperty]
-            public DateTime Published { get; set; }
-            [JsonProperty]
-            public string FileLink { get; set; }
-        }*/
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using DevApp1.ViewModels;
 
 namespace DevApp1
 {
@@ -19,6 +20,8 @@ namespace DevApp1
             DataContext = App.DLNewsViewModel;
             if (!App.DLNewsViewModel.IsDataLoaded)
                 App.DLNewsViewModel.LoadData();
+
+            DLFeedList.NavigateToString(DLNewsViewModel.htmlContent);
         }
     }
 }
