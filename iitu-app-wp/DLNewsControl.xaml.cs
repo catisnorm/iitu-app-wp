@@ -21,7 +21,7 @@ namespace DevApp1
             if (!App.DLNewsViewModel.IsDataLoaded)
                 App.DLNewsViewModel.LoadData();
 
-            DLFeedList.NavigateToString(DLNewsViewModel.htmlContent);
+            DLFeedList.NavigateToString("<html><body>" + App.DLNewsViewModel.htmlContent + "</body></html>");
         }
     }
 }

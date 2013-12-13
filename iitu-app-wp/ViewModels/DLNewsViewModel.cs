@@ -13,12 +13,11 @@ namespace DevApp1.ViewModels
 {
     public class DLNewsViewModel
     {
-        public static string htmlContent = "";
         public DLNewsViewModel()
         {
             this.Items = new ObservableCollection<DLNewsItemViewModel>();
         }
-
+        public string htmlContent { get; private set; }
         public ObservableCollection<DLNewsItemViewModel> Items { get; private set; }
 
         public bool IsDataLoaded
@@ -34,7 +33,7 @@ namespace DevApp1.ViewModels
         
         private void onLoadCompleted(string obj)
         {
-            
+            /*
             string curDir = Directory.GetCurrentDirectory();
 
             using (Stream stream1 = File.Open(String.Format(@"{0}\html_dl_item.html", curDir), FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -48,11 +47,10 @@ namespace DevApp1.ViewModels
                 wr.WriteLine("  <div class=\"text\">{text}</div>");
                 wr.WriteLine("</div>");
             }
-            
             Stream stream = File.Open(String.Format(@"{0}\html_dl_item.html", curDir), FileMode.Open);
-            StreamReader streamReader = new StreamReader(stream);
+            StreamReader streamReader = new StreamReader(stream1);
             string itemtpl = streamReader.ReadToEnd();
-            
+            */
             StringReader strReader = new StringReader(obj);
             JsonTextReader reader = new JsonTextReader(strReader);
 
@@ -91,15 +89,21 @@ namespace DevApp1.ViewModels
                                     Published = DateTime.Parse(published),
                                 });
 
-                                string currentItem = itemtpl;
+                                string currentItem = "<div class=\"post\">"
+                                                   + "  <div class=\"header\">"
+                                                   + "      <div class=\"title\">{title}</div>"
+                                                   + "      <div class=\"date\">{date}</div>"
+                                                   + "  </div>"
+                                                   + "  <div class=\"text\">{text}</div>"
+                                                   + "</div>";
                                 currentItem = currentItem.Replace("{title}", title).Replace("{text}", content).Replace("{date}", published);
-                                htmlContent += currentItem;
+                                this.htmlContent += currentItem;
                             }
                         }
                     }
                 }
             }
-
+ 
             this.IsDataLoaded = true;
         }
     }
